@@ -1,0 +1,370 @@
+<template>
+
+    <div style="">
+
+
+        <div id="hexi_main_section">
+
+            <FirstPanel v-if="$store.state.icon_panel"/>
+            <ChatPanel v-if="$store.state.chat_panel"/>
+
+        </div>
+    </div>
+
+</template>
+
+<script>
+    import FirstPanel from "./components/FirstPanel";
+    import ChatPanel from "./components/ChatPanel";
+
+    export default {
+        name: 'App',
+        components: {
+            FirstPanel,
+            ChatPanel
+        }
+    }
+</script>
+
+<style>
+    @import url('https://fonts.cdnfonts.com/css/league-spartan');
+
+    /* @font-face {
+        font-family: LeagueSpartan;
+        src: url('./assets/fonts/LeagueSpartan-ExtraLight.ttf');
+    } */
+
+    .font-family-leaguespartan {
+        font-family: 'system-ui';
+    }
+
+    #hexi_main_section {  
+        background-color: #fff;
+        flex-direction: column;
+        justify-content: space-between;
+        font-family: League Spartan, sans-serif;
+        display: flex;
+    }
+
+    .go-genie-wrapper {
+        z-index: 1001;
+        width: 70px;
+        height: 70px;
+        position: fixed;
+        bottom: 55px;
+        right: 15px;
+    }
+
+    @media screen and (max-width: 767px) {
+      .ms-chat-box {
+          max-height: 84vh;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          font-size: 13px;
+          bottom: 17px;
+          right: -15px;
+        }
+      .ms-chat-channel-btn {
+        padding-top: 15px !important;
+        padding-bottom: 12px !important;
+        font-size: 14px !important;
+      } 
+    }
+
+    .ms-chat-icon {
+        z-index: 2;
+        background-color: #4baeb2;
+        background-image: linear-gradient(143deg, #16171b, #090e19 51%, #3e878b);
+        border-radius: 100%;
+        justify-content: center;
+        align-items: center;
+        padding: 18px;
+        transition: background-color .6s cubic-bezier(.901, .094, .25, 1);
+        display: flex;
+        position: absolute;
+        top: 0%;
+        bottom: 0%;
+        left: 0%;
+        right: 0%;
+        box-shadow: 0 20px 30px -10px rgba(85, 94, 105)
+    }
+
+    .ms-chat-icon-img {
+        transform: rotate(-30deg);
+    }
+    img {
+        max-width: 100%;
+        vertical-align: middle;
+        border: 0;
+    }
+
+    .image {
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 100px;
+            padding: 2px;
+            position: absolute;
+            top: -10%;
+            bottom: auto;
+            left: auto;
+            right: -5%;
+    }
+
+    .ms-chat-box {
+        display: block !important;
+        z-index: 1;
+        width: 100vw;
+        height: 500px;
+        max-height: 75vh;
+        max-width: 350px;
+        text-align: center;
+        background-color: #f7fafb;
+        border: 1px solid #e9e7e7;
+        border-radius: 8px;
+        line-height: 1.5em;
+        display: none;
+        position: absolute;
+        top: auto;
+        bottom: 24px;
+        left: auto;
+        right: -5px;
+        overflow: auto;
+        box-shadow: 0 20px 40px -5px rgba(85, 94, 105, .25);
+    }
+
+    .ms-chat-bg {
+        height: 190px;
+        background-color: #000;
+        position: absolute;
+        top: 0%;
+        bottom: auto;
+        left: 0%;
+        right: 0%;
+    }
+
+    .ms-chat-frame {
+        z-index: 1;
+        position: relative;
+    }
+
+    .ms-chat-animation {
+        height: 190px;
+        overflow: hidden;
+    }
+
+    .ms-chat-header {
+        color: #fff;
+        text-align: center;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 17px 45px;
+        font-size: 14px;
+        display: flex;
+    }
+
+    .ms-chat-profile-img-wrap {
+        width: 100%;
+        max-height: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .ms-chat-channel-wrap {
+        margin-top: -25px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .genie-site-fav {
+        width: 45px;
+        height: 45px;
+        background-color: #d8dfe2;
+        border-radius: 100%;
+        margin-left: -1px;
+        margin-right: -1px;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, .31), 0 10px 10px -1px rgba(85, 94, 105, .25);
+    }
+
+    .site-name {
+        background-color: rgba(244, 244, 244, .15);
+        border: 1px solid rgba(202, 202, 202, .19);
+        border-radius: 8px;
+        padding: 6px;
+    }
+
+    .ms-chat-channel-btn {
+        z-index: 1;
+        color: #181823;
+        text-align: left;
+        background-color: #fff;
+        border: 1px solid #e9e7e7;
+        border-radius: 8px;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px 20px;
+        font-size: 15px;
+        text-decoration: none;
+        transition: box-shadow .2s, border-color .2s, top .2s;
+        display: flex;
+        position: relative;
+        top: 0;
+        box-shadow: 0 7px 15px -4px rgba(85, 94, 105, .2);
+    }
+
+    .w-inline-block {
+        max-width: 100%;
+        display: inline-block;
+    }
+
+    .hexigon-link {
+        opacity: .25;
+        margin-top: 10px;
+        transition: opacity .4s;
+    }
+
+    .ms-chat-bottom-text {
+        opacity: .75;
+        margin-top: 80px;
+        padding-bottom: 10px;
+        font-size: 90%;
+        position: relative;
+        top: auto;
+        bottom: 0%;
+        left: 0%;
+        right: 0%;
+    }
+
+    .ms-chat-channel-icon {
+      width: 30px;
+      min-width: 30px;
+      border-radius: 8px;
+      margin-right: 20px;
+    }
+
+    .ms-chat-smaller-text {
+      opacity: .75;
+      font-size: 80%;
+    }
+
+    .ms-chat-channel-form {
+        z-index: 1;
+        color: #181823;
+        text-align: left;
+        background-color: #fff;
+        border: 1px solid #e9e7e7;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 25px 15px 20px 25px;
+        font-size: 15px;
+        text-decoration: none;
+        position: relative;
+        top: 0;
+        box-shadow: 0 7px 15px -4px rgba(85, 94, 105, .2);
+    }
+
+    .ms-chat-label {
+        z-index: 2;
+        background-color: #fff;
+        margin-left: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
+        display: inline-block;
+        position: relative;
+    }
+
+    .genei-chat-field.genei-chat-message {
+        min-height: 150px;
+    }
+    .genei-chat-field {
+        border: 1px solid #aaa9a9;
+        border-radius: 4px;
+        margin-top: -1.1em;
+    }
+    textarea.w-input, textarea.w-select {
+        height: auto;
+    }
+    .w-input, .w-select {
+        width: 100%;
+        height: 38px;
+        color: #333;
+        vertical-align: middle;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 1.42857;
+        display: block;
+    }
+    .ms-chat-submit-button {
+        width: 100%;
+        background-color: #141616;
+        border-radius: 4px;
+        padding: 15px;
+    }
+
+    textarea {
+        overflow: auto;
+    }
+
+    .w-button {
+        color: #fff;
+        line-height: inherit;
+        cursor: pointer;
+        background-color: #141616 !important;
+        border: 0;
+        border-radius: 0;
+        padding: 9px 15px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .relay-genie {
+        text-align: left;
+        background-color: rgba(0, 0, 0, 0);
+        padding: 0;
+    }
+    .ms-chat-smaller-text {
+        opacity: .75;
+        font-size: 80%;
+    }
+
+    .ms-chat-back {
+        width: 50px;
+        height: 50px;
+        background-image: url(https://assets.website-files.com/64640c61e787ce0fd0ed972b/64640c62e787ce0fd0ed9784_noun_back_2627267.svg);
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: 20px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        position: absolute;
+        top: 0%;
+        bottom: auto;
+        left: 0%;
+        right: auto;
+    }
+
+    .genei-chat-field {
+        border: 1px solid #aaa9a9;
+        border-radius: 4px;
+        margin-top: -1.1em;
+    }
+
+    .font-size-14px {
+        font-size: '14px';
+    }
+
+    .margin-top-2em {
+        margin-top: 2em;
+    }
+
+
+
+</style>
